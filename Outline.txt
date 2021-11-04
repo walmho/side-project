@@ -1,1 +1,1 @@
-Test to see how this is gonna work
+This program is going to use tkinter and selenium or beautifulsoup (idk which one yet) to search the web for specific data - this is more to learn than anything else.
