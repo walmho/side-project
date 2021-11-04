@@ -8,13 +8,14 @@
 # root.geometry("%dx%d+0+0" % (100, 200))
 # root.mainloop()
 
-import tkinter as tk
-from tkinter import Scale
+# import tkinter as tk
+# from tkinter import Scale
 
-root = tk.Tk()
-xSlide = Scale(root, from_=0, to=42)
-xSlide.pack()
-ySlide = Scale(root, from_=0, to=200)
-ySlide.pack()
+# root = tk.Tk()
+# xSlide = Scale(root, from_=0, to=42)
+# xSlide.pack()
+# ySlide = Scale(root, from_=0, to=200)
+# ySlide.pack()
 
-root.mainloop()
+# root.mainloop()
+
