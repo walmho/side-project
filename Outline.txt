@@ -1,1 +1,4 @@
-This program is going to use tkinter and selenium or beautifulsoup (idk which one yet) to search the web for specific data - this is more to learn than anything else.
+This program is going to use tkinter and selenium or beautifulsoup 
+(idk which one yet) to search the web for specific data - this is more to learn than anything else.
+
+Will start working on web scraping once selenium is on school computer
