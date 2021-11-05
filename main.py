@@ -17,10 +17,10 @@ def colorCycle(colorCounter):
         colorCounter = 0
     else:
         colorCounter += 1
+    print(colorCounter)
     global chosenColor
     chosenColor = colors[colorCounter]
     print(chosenColor)
-    return chosenColor
 
 #Sub-window for settings
 def userSettings(colorCounter):
@@ -46,8 +46,13 @@ def userSettings(colorCounter):
     changeColor.pack()
 
     #Buttons
-    finishChanges = Button(settings, text="Apply", command=lambda:applyChanges(xSlide.get(), ySlide.get(), chosenColor))
-    finishChanges.pack()
+    #Error handling for if the user hasn't changed the color
+    try:
+        finishChanges = Button(settings, text="Apply", command=lambda:applyChanges(xSlide.get(), ySlide.get(), chosenColor))
+        finishChanges.pack()
+    except NameError:
+        finishChanges = Button(settings, text="Apply", command=lambda:applyChanges(xSlide.get(), ySlide.get(), chosenColor="white"))
+        finishChanges.pack()
 
 #Button command to apply changes
 def applyChanges(x, y, bgColor):
@@ -55,7 +60,7 @@ def applyChanges(x, y, bgColor):
     root.configure(background=bgColor)
 
 def main():
-    colorCounter = 0
+    colorCounter = -1
     mainWindow("Web Finder Beta", 1000, 600, "white", colorCounter)
 
 if __name__ == "__main__":
