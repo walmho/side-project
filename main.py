@@ -1,18 +1,29 @@
 from tkinter import *
 import tkinter as tk
 
-def mainWindow(screenName, dimensionX, dimensionY, bgColor):
+def mainWindow(screenName, dimensionX, dimensionY, bgColor, colorCounter):
     global root
     root = tk.Tk()
     root.title(screenName)
     root.configure(background=bgColor)
     root.geometry("%dx%d+0+0" % (dimensionX, dimensionY))
 
-    settings = Button(root, text="Settings", command=lambda:userSettings())
+    settings = Button(root, text="Settings", command=lambda:userSettings(colorCounter))
     settings.pack()
 
+def colorCycle(colorCounter):
+    colors = ["red", "orange", "yellow", "green", "blue", "purple", "pink", "pale violet red", "light salmon", "gold", "spring green", "light sky blue"]
+    if colorCounter >= len(colors):
+        colorCounter = 0
+    else:
+        colorCounter += 1
+    global chosenColor
+    chosenColor = colors[colorCounter]
+    print(chosenColor)
+    return chosenColor
+
 #Sub-window for settings
-def userSettings():
+def userSettings(colorCounter):
     #Sub-window setup
     global settings
     settings = tk.Tk()
@@ -31,21 +42,21 @@ def userSettings():
     ySlide.pack()
 
     #Temp color var for testing - eventually make a button that toggles
-    color = "grey"
+    changeColor = Button(settings, text="Toggle Colors", command=lambda:colorCycle(colorCounter))
+    changeColor.pack()
 
     #Buttons
-    finishChanges = Button(settings, text="Apply", command=lambda:applyChanges(xSlide.get(), ySlide.get(), color))
+    finishChanges = Button(settings, text="Apply", command=lambda:applyChanges(xSlide.get(), ySlide.get(), chosenColor))
     finishChanges.pack()
 
 #Button command to apply changes
 def applyChanges(x, y, bgColor):
     root.geometry("%dx%d+0+0" % (x, y))
     root.configure(background=bgColor)
-    print(x)
-    print(y)
 
 def main():
-    mainWindow("Web Finder Beta", 1000, 600, "white")
+    colorCounter = 0
+    mainWindow("Web Finder Beta", 1000, 600, "white", colorCounter)
 
 if __name__ == "__main__":
     main()
