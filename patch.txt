@@ -1,0 +1,3 @@
+Work on cleaning up functions
+See if global vars are really needed
+
