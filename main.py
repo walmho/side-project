@@ -1,12 +1,15 @@
 from tkinter import *
 import tkinter as tk
 
-def makeWindow(screenName, dimensionX, dimensionY, bgColor):
+def mainWindow(screenName, dimensionX, dimensionY, bgColor):
     global root
     root = tk.Tk()
     root.title(screenName)
     root.configure(background=bgColor)
     root.geometry("%dx%d+0+0" % (dimensionX, dimensionY))
+
+    settings = Button(root, text="Settings", command=lambda:userSettings())
+    settings.pack()
 
 #Sub-window for settings
 def userSettings():
@@ -16,23 +19,33 @@ def userSettings():
     settings.title("Settings")
 
     #Components within settings window
+    #Sliders to adjust window size - you can do this manually, but again. Learning experience
+    x = DoubleVar()
     global xSlide
-    xSlide = Scale(root, from_=0, to=42, command=applyChanges)
+    xSlide = Scale(settings, from_=0, to=1000, orient=HORIZONTAL, variable=x)
     xSlide.pack()
+
+    y = DoubleVar()
     global ySlide
-    ySlide = Scale(root, from_=0, to=200, orient=HORIZONTAL, command=applyChanges)
+    ySlide = Scale(settings, from_=0, to=500, orient=VERTICAL, variable=y)
     ySlide.pack()
 
+    #Temp color var for testing - eventually make a button that toggles
+    color = "grey"
+
+    #Buttons
+    finishChanges = Button(settings, text="Apply", command=lambda:applyChanges(xSlide.get(), ySlide.get(), color))
+    finishChanges.pack()
+
 #Button command to apply changes
-def applyChanges(x, y, bgColor="red"):
-    root.geometry("%dx%d+0+0" % (x.get(), y.get()))
+def applyChanges(x, y, bgColor):
+    root.geometry("%dx%d+0+0" % (x, y))
     root.configure(background=bgColor)
     print(x)
     print(y)
 
 def main():
-    makeWindow("Web Finder Beta", 1000, 600, "white")
-    userSettings()
+    mainWindow("Web Finder Beta", 1000, 600, "white")
 
 if __name__ == "__main__":
     main()
