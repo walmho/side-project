@@ -1,5 +1,6 @@
 from tkinter import *
 import tkinter as tk
+import numpy as np
 
 def makeWindow(screenName, dimensionX, dimensionY, bgColor):
     global root
