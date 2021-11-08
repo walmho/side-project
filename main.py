@@ -13,17 +13,25 @@ def windowSetup():
 class gridSquare(pygame.sprite.Sprite):
     def __init__(self):
         pass
+
     def update(self):
         pygame.draw.polygon(window, BLACK, ((0, 0), (50, 0), (50, 50), (0, 50), (0, 0)))
+
+    def checkClick(self):
         pos = pygame.mouse.get_pos()
         ev = pygame.event.get()
+        if pos <= (50, 50):
+            print(pos)
         if ev == pygame.MOUSEBUTTONDOWN and pos <= (50, 50):
-            window.fill(BLACK)
-            break
+            print("Hello")
+        else:
+            pass
+        
 
 def gameLoop():
     while True:
         square = gridSquare()
+        square.checkClick()
         square.update()
         for event in pygame.event.get():
             if event.type == QUIT:
