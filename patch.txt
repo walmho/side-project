@@ -1,4 +1,1 @@
-Work on cleaning up functions
-See if global vars are really needed
-
-Currently using pack for simplicity and ease of testing, eventually switch to grid()
+Add def main() and init

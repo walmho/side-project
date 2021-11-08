@@ -1,4 +1,3 @@
-This program is going to use tkinter and selenium or beautifulsoup 
-(idk which one yet) to search the web for specific data - this is more to learn than anything else.
+This is a simple game in pygame
 
-Will start working on web scraping once selenium is on school computer
+Special thanks to https://inventwithpython.com/makinggames.pdf for pygame tutorial and instruction guidance

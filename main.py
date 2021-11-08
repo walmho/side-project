@@ -1,34 +1,40 @@
-from tkinter import *
-import tkinter as tk
-import numpy as np
+import pygame, sys
+from pygame.locals import *
+BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
 
-def makeWindow(screenName, dimensionX, dimensionY, bgColor):
-    global root
-    root = tk.Tk()
-    root.title(screenName)
-    root.configure(background=bgColor)
-    root.geometry("%dx%d+0+0" % (dimensionX, dimensionY))
+def windowSetup():
+    dimensions = windowX, windowY = 500, 250
+    pygame.display.set_caption("IDK")
+    global window
+    window = pygame.display.set_mode(dimensions)
+    window.fill(WHITE)
 
-def userSettings():
-    global xSlide
-    xSlide = Scale(root, from_=0, to=42)
-    xSlide.pack()
-    global ySlide
-    ySlide = Scale(root, from_=0, to=200, orient=HORIZONTAL)
-    ySlide.pack()
+class gridSquare(pygame.sprite.Sprite):
+    def __init__(self):
+        pass
+    def update(self):
+        pygame.draw.polygon(window, BLACK, ((0, 0), (50, 0), (50, 50), (0, 50), (0, 0)))
+    def onClick():
+        pos = pygame.mouse.get_pos()
+        
+        window.fill(BLACK)
 
-def applyChanges(x, y, bgColor="red"):
-    root.geometry("%dx%d+0+0" % (x.get(), y.get()))
-    root.configure(background=bgColor)
+def gameLoop():
+    while True:
+        square = gridSquare()
+        square.update()
+        for event in pygame.event.get():
+            if event.type == QUIT:
+                pygame.quit()
+                sys.exit()
 
-def makeButtons():
-    editLayout = Button(root, text="Settings", command=lambda:applyChanges(xSlide, ySlide))
+        pygame.display.update()
 
 def main():
-    makeWindow("Web Finder Beta", 1500, 800, "white")
-    userSettings()
+    pygame.init()
+    windowSetup()
+    gameLoop()
 
 if __name__ == "__main__":
     main()
-
-root.mainloop()
