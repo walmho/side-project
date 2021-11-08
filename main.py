@@ -15,10 +15,11 @@ class gridSquare(pygame.sprite.Sprite):
         pass
     def update(self):
         pygame.draw.polygon(window, BLACK, ((0, 0), (50, 0), (50, 50), (0, 50), (0, 0)))
-    def onClick():
         pos = pygame.mouse.get_pos()
-        
-        window.fill(BLACK)
+        ev = pygame.event.get()
+        if ev == pygame.MOUSEBUTTONDOWN and pos <= (50, 50):
+            window.fill(BLACK)
+            break
 
 def gameLoop():
     while True:
