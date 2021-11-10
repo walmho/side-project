@@ -1,0 +1,1 @@
+edit check hover function to relate to self.coord
