@@ -21,11 +21,13 @@ class gridSquare(pygame.sprite.Sprite):
     def update(self):
         pygame.draw.polygon(window, BLACK, ((0, 0), (50, 0), (50, 50), (0, 50), (0, 0)))
 
-    def checkClick(self, pos, ev):
+    def checkHover(self):
         # for events in pygame.event.get():
-        if 1 == 1 and pos <= (50, 50):
+        pos = pygame.mouse.get_pos()
+        ev = pygame.event.get()
+        if pos <= (50, 50):
             print("Hovering!")
-        else:
+        elif pos > (50, 50):
             print("Not hovering!")
 
 def gameLoop():
@@ -36,9 +38,9 @@ def gameLoop():
             if event.type == QUIT:
                 pygame.quit()
                 sys.exit()
-            pos = pygame.mouse.get_pos()
-            ev = pygame.event.get()
-            square.checkClick(pos, ev)
+            if event.type == MOUSEBUTTONUP:
+                square.checkHover()
+
         pygame.display.update()
 
 def main():
