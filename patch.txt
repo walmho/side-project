@@ -1,1 +1,2 @@
-edit check hover function to relate to self.coord
+edit check hover function to relate to self.coord so its accurate again
+make gridArray sprite bounce off edges and move randomly using random module
