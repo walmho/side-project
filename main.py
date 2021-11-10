@@ -23,10 +23,10 @@ class gridSquare(pygame.sprite.Sprite):
 
     def checkClick(self, pos, ev):
         # for events in pygame.event.get():
-        if ev == pygame.MOUSEBUTTONDOWN and pos <= (50, 50):
-            print("Hello")
+        if 1 == 1 and pos <= (50, 50):
+            print("Hovering!")
         else:
-            pass
+            print("Not hovering!")
 
 def gameLoop():
     while True:
