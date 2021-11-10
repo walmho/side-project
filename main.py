@@ -16,18 +16,19 @@ def windowSetup():
 
 class gridSquare():
     def __init__(self, size=50):
-        self.coord = (0, 0)
+        self.coord = [0, 0]
         self.size = size
 
     def update(self):
         pygame.draw.polygon(window, BLACK, (
-            self.coord, 
+            (self.coord[0], self.coord[1]),
             (self.coord[0]+self.size, self.coord[1]), 
             (self.coord[0]+self.size, self.coord[1]+self.size), 
             (self.coord[0], self.coord[1]+self.size))
         )
 
-        # self.coord += 5 
+        self.coord[0] += 5
+        self.coord[1] += 5
 
     def checkHover(self):
         # for events in pygame.event.get():
