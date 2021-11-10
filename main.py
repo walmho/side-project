@@ -14,12 +14,20 @@ def windowSetup():
     window = pygame.display.set_mode(dimensions)
     window.fill(WHITE)
 
-class gridSquare(pygame.sprite.Sprite):
-    def __init__(self):
-        pass
+class gridSquare():
+    def __init__(self, size=50):
+        self.coord = (0, 0)
+        self.size = size
 
     def update(self):
-        pygame.draw.polygon(window, BLACK, ((0, 0), (50, 0), (50, 50), (0, 50), (0, 0)))
+        pygame.draw.polygon(window, BLACK, (
+            self.coord, 
+            (self.coord[0]+self.size, self.coord[1]), 
+            (self.coord[0]+self.size, self.coord[1]+self.size), 
+            (self.coord[0], self.coord[1]+self.size))
+        )
+
+        # self.coord += 5 
 
     def checkHover(self):
         # for events in pygame.event.get():
@@ -31,7 +39,9 @@ class gridSquare(pygame.sprite.Sprite):
             print("Not hovering!")
 
 def gameLoop():
+    global window
     while True:
+        window.fill(WHITE)
         square = gridSquare()
         square.update()
         for event in pygame.event.get():
