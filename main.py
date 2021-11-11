@@ -20,8 +20,8 @@ colorList = [BLACK, RED, GREEN, BLUE, YELLOW, PINK, PURPLE]
 clock = pygame.time.Clock()
 
 def windowSetup():
-    global dimensions
-    dimensions = (500, 250)
+    global dimensions, windowX, windowY
+    dimensions = windowX, windowY = (500, 250)
     pygame.display.set_caption("Clickey Clack")
     global window
     window = pygame.display.set_mode(dimensions)
@@ -30,8 +30,8 @@ def windowSetup():
 #Since this is my first class I'm going to use more comments than neccesary here:
 class gridSquare():
     #Initialize function, run once to define all vars in the object, etc.
-    def __init__(self, size=50):
-        self.coord = [0, 0]
+    def __init__(self, size, coord):
+        self.coord = coord
         self.size = size
         self.movespeed = 1
         self.spriteColor = colorList[0]
@@ -75,18 +75,25 @@ class gridSquare():
         # Checks if the mouse is over the box relative to its current position
         pos = pygame.mouse.get_pos()
         if pos >= (self.coord[0], self.coord[1]) and pos <= (self.coord[0]+self.size, self.coord[1]+self.size):
-            print("Clicked!")
+            # print("Clicked!")
             self.colorCount += 1
             if self.colorCount >= len(colorList):
                 self.colorCount = 0
             self.spriteColor = colorList[self.colorCount]
         elif pos < (self.coord[0], self.coord[1]) and pos > (self.coord[0]+self.size, self.coord[1]+self.size):
-            print("Not clicked!")
+            # print("Not clicked!")
+            #This doesn't even work...
+            pass
 
 def gameLoop():
     global window, clock
+    #Size delcaration for size of gridSquare
+    size = 50
     #Initializes an instance of gridSquare() class
-    square = gridSquare()
+    squares = [gridSquare(size, [0, 0])]
+    for i in range(1, 11):
+        squares.append(gridSquare(size, [size*i, 0]))
+
     while True:
         #"Resets" Window so square is drawn fresh each time
         window.fill(WHITE)
@@ -98,9 +105,11 @@ def gameLoop():
                 sys.exit()
             #If mouse button is clicked:
             if event.type == MOUSEBUTTONUP:
-                square.ifClicked()
+                for square in squares:
+                    square.ifClicked()
 
-        square.update()
+        for square in squares:
+            square.update()
         pygame.display.update()
         clock.tick(60)
 
