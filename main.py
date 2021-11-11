@@ -43,6 +43,11 @@ class gridSquare():
             self.windowsize = dimensions[1]
 
     def update(self):
+        """ 
+
+        Below code is what I made to learn how sprites move. While I will reuse some of this code,
+        For the most part I need to remake gridArray's movement. This code will be saved in miniTests.py
+
         #Draws a cube using top left coordinate as reference and wanted size
         pygame.draw.polygon(window, self.spriteColor, (
             (self.coord[0], self.coord[1]),
@@ -56,6 +61,15 @@ class gridSquare():
         #If bottom right corner of sprite hits the edge of the window, reset coords
         if self.coord[1] > self.windowsize-self.size:
             self.coord = [0, 0]
+
+        """
+
+        pygame.draw.polygon(window, self.spriteColor, (
+            (self.coord[0], self.coord[1]),
+            (self.coord[0]+self.size, self.coord[1]), 
+            (self.coord[0]+self.size, self.coord[1]+self.size), 
+            (self.coord[0], self.coord[1]+self.size))
+        )
 
     def ifClicked(self):
         # Checks if the mouse is over the box relative to its current position
