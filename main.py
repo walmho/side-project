@@ -27,14 +27,21 @@ def windowSetup():
     window = pygame.display.set_mode(dimensions)
     window.fill(WHITE)
 
-#Since this is my first class I'm going to use more comments than neccesary here:
+class buildingMenu():
+    def __init__(self):
+        background = pygame.draw.rect(window, RED, rect=(50, 50, 50, 50), int=1)
+
+    def update():
+        pass
 
 def gameLoop():
     global window, clock
+    sideMenu = buildingMenu()
 
     while True:
         #"Resets" Window so square is drawn fresh each time
         window.fill(WHITE)
+
         #Event check loop
         for event in pygame.event.get():
             #If exit button is clicked

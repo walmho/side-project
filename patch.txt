@@ -1,1 +1,3 @@
-Make some form of movement for gridArray sprite
+Eventually, you'll need to make everything proportional to the user's screen window...
+
+Good luck with that, buddy
