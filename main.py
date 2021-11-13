@@ -21,14 +21,14 @@ clock = pygame.time.Clock()
 
 def windowSetup():
     global dimensions, windowX, windowY
-    dimensions = windowX, windowY = (500, 250)
+    dimensions = windowX, windowY = (1000, 500)
     pygame.display.set_caption("Clickey Clack")
     global window
     window = pygame.display.set_mode(dimensions)
     window.fill(WHITE)
 
 #Since this is my first class I'm going to use more comments than neccesary here:
-class gridSquare():
+class testSquare():
     #Initialize function, run once to define all vars in the object, etc.
     def __init__(self, size, coord):
         self.coord = coord
@@ -85,14 +85,22 @@ class gridSquare():
             #This doesn't even work...
             pass
 
+class buildingMenu():
+    def __init__(self):
+        pass
+
+    def update():
+        pass
+
+
 def gameLoop():
     global window, clock
     #Size delcaration for size of gridSquare
     size = 50
     #Initializes an instance of gridSquare() class
-    squares = [gridSquare(size, [0, 0])]
-    for i in range(1, 11):
-        squares.append(gridSquare(size, [size*i, 0]))
+    squares = [testSquare(size, [0, 0])]
+    for i in range(1, int(windowX/size)):
+        squares.append(testSquare(size, [size*i, 0]))
 
     while True:
         #"Resets" Window so square is drawn fresh each time
