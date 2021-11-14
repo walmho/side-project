@@ -27,21 +27,24 @@ def windowSetup():
     window = pygame.display.set_mode(dimensions)
     window.fill(WHITE)
 
-class buildingMenu():
+class spaceShip():
     def __init__(self):
-        background = pygame.draw.rect(window, RED, rect=(50, 50, 50, 50), int=1)
+        self.coords = [500, 400]
+        self.size = 50
+        self.bottomLeft = [self.coords[0]-self.size, self.coords[1]-self.size]
+        self.bottomRight = [self.coords[0]+self.size, self.coords[1]-self.size]
 
-    def update():
-        pass
+    def update(self):
+        ship = pygame.draw.polygon(window, PURPLE, (self.coords, self.bottomLeft, self.bottomRight))
 
 def gameLoop():
     global window, clock
-    sideMenu = buildingMenu()
+    heroShip = spaceShip()
 
     while True:
         #"Resets" Window so square is drawn fresh each time
         window.fill(WHITE)
-
+        heroShip.update()
         #Event check loop
         for event in pygame.event.get():
             #If exit button is clicked
